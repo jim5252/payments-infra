@@ -22,9 +22,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "statements" {
 resource "aws_s3_bucket_public_access_block" "statements" {
   bucket                  = aws_s3_bucket.statements.id
   block_public_acls       = true
-  block_public_policy     = false # set to false for demo
+  block_public_policy     = true # set to false for demo
   ignore_public_acls      = true
-  restrict_public_buckets = false # set to false for demo
+  restrict_public_buckets = true # set to false for demo
 }
 
 # Print vendor reads statement PDFs
