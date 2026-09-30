@@ -27,7 +27,7 @@ resource "aws_s3_bucket_public_access_block" "statements" {
   restrict_public_buckets = false # set to false for demo
 }
 
-Print vendor reads statement PDFs
+#Print vendor reads statement PDFs
 resource "aws_s3_bucket_policy" "vendor_read" {
   bucket = aws_s3_bucket.statements.id
   policy = jsonencode({
