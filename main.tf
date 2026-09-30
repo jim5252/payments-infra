@@ -28,16 +28,16 @@ resource "aws_s3_bucket_public_access_block" "statements" {
 }
 
 # Print vendor reads statement PDFs
-# resource "aws_s3_bucket_policy" "vendor_read" {
-#   bucket = aws_s3_bucket.statements.id
-#   policy = jsonencode({
-#     Version = "2012-10-17"
-#     Statement = [{
-#       Sid       = "VendorRead"
-#       Effect    = "Allow"
-#       Principal = { AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/vendor-print-reader" }
-#       Action    = "s3:GetObject"
-#       Resource  = "${aws_s3_bucket.statements.arn}/*"
-#     }]
-#   })
-# }
+resource "aws_s3_bucket_policy" "vendor_read" {
+  bucket = aws_s3_bucket.statements.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Sid       = "VendorRead"
+      Effect    = "Allow"
+      Principal = { AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/vendor-print-reader" }
+      Action    = "s3:GetObject"
+      Resource  = "${aws_s3_bucket.statements.arn}/*"
+    }]
+  })
+}
